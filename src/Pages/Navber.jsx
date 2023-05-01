@@ -2,9 +2,11 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import logo from '../assets/yumma_logo.png'
+import { Link } from 'react-router-dom';
 const Navber = () => {
     return (
-        <div className="navbar bg-base-200">
+        <div className="navbar bg-base-200
+        ">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -12,10 +14,10 @@ const Navber = () => {
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
       <li>
-        <a>Home</a>
+        <Link to='/' >Home</Link>
         </li>
       <li>
-        <a>Blog</a>
+        <Link to='/blog' >Blog</Link>
         </li>
       </ul>
     </div>
@@ -25,8 +27,8 @@ const Navber = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Home</a></li>
-      <li><a>Blog</a></li>
+      <li><Link to='/' >Home</Link></li>
+      <li><Link to='/blog' >Blog</Link></li>
       
      
     </ul>
