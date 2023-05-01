@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../AuthProviders/AuthProviders";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+  const {createRegister} = useContext(authContext);
   const handleRegister = (event) =>{
     event.preventDefault();
     const form = event.target;
@@ -11,7 +14,22 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name,img,email, password);
+   createRegister (email,password)
+   .then(async(result) => {
+    const user = result.user;
+    await updateProfile(user,{
+      displayName: name ,
+      photoURL: img
+    }).then(() => {
+    }).catch(() =>{})
+    console.log(user);
     form.reset();
+  })
+  .catch((error) => {
+    
+    const errorMessage = error.message;
+       console.log(errorMessage)
+  });
   }
   return (
     <form onSubmit={handleRegister}>
