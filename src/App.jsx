@@ -4,7 +4,9 @@ import Navber from './Pages/Navber';
 import Footer from './Pages/Footer';
 import { Outlet } from 'react-router-dom';
 
+
 const App = () => {
+ 
   return (
     <div>
       <Navber></Navber>
