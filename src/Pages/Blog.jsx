@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useContext } from 'react';
+import { authContext } from '../AuthProviders/AuthProviders';
 
 const Blog = () => {
+    const {user} = useContext(authContext)
     return (
         <div>
-            sdfss
+            <h1>sfdfsdfsdf :{user?.displayName}</h1>
         </div>
     );
 };

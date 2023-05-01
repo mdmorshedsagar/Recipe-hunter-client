@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import app from "../Firebase/Firebase.config";
 
@@ -20,10 +22,20 @@ const AuthProviders = ({ children }) => {
   const createLogin = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+   const createLogOut = () =>{
+    return signOut(auth);
+   }
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
+         setUser(currentUser)
+    })
+    return () =>{unsubscribe()};
+  },[])
   const authInfo = {
     user,
     createRegister,
-    createLogin
+    createLogin,
+    createLogOut
   };
   return (
     <authContext.Provider value={authInfo}>{children}</authContext.Provider>
