@@ -14,6 +14,7 @@ import Register from './Pages/Register';
 import AuthProviders from './AuthProviders/AuthProviders';
 import  { Toaster } from 'react-hot-toast'
 import ErrorPage from './Pages/ErrorPage';
+import Recipe from './Pages/Recipe';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,12 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register></Register>
+      },
+      {
+        path:"/recipes/:id",
+        element: <Recipe></Recipe>,
+        loader: ({params}) => fetch(`http://localhost:3000/recipe/${params.id}`)
+
       }
     ]
   },
