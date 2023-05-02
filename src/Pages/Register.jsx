@@ -1,19 +1,27 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../AuthProviders/AuthProviders";
 import { updateProfile } from "firebase/auth";
-
+import toast from 'react-hot-toast';
 const Register = () => {
   const {createRegister} = useContext(authContext);
+  const [error, setError] = useState('');
+  const [show, setShow] = useState(false);
   const handleRegister = (event) =>{
     event.preventDefault();
+     setError('')
     const form = event.target;
     const name = form.name.value;
     const img = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name,img,email, password);
+     
+     if(password.length < 6){
+      alert('password must be 8 character')
+      return;
+    }
+   
    createRegister (email,password)
    .then(async(result) => {
     const user = result.user;
@@ -22,13 +30,21 @@ const Register = () => {
       photoURL: img
     }).then(() => {
     }).catch(() =>{})
-    console.log(user);
+    toast.success('Registration successfully',
+  {
+    style: {
+      borderRadius: '10px',
+      background: '#333',
+      color: '#fff',
+    },
+  }
+);
     form.reset();
   })
   .catch((error) => {
     
     const errorMessage = error.message;
-       console.log(errorMessage)
+       setError(errorMessage)
   });
   }
   return (
@@ -40,6 +56,7 @@ const Register = () => {
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+              <p className="text-lg font-semibold text-red-600">{error}</p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -77,14 +94,22 @@ const Register = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
+                 
                 </label>
+                <div className="flex ">
                 <input
-                  type="password"
+                
+                  type={show ? "text" : "password"}
                   name='password'
                   placeholder="inter a password "
-                  className="input input-bordered"
+                  className="input input-bordered grow"
                   required
                 />
+                 <button className="border border-base-500 rounded-r-lg" onClick={() =>setShow(!show)}>{
+                    show ? <p>Hide</p> : <p>Show</p>
+                  }</button>
+                </div>
+               
                 <label className="label">
                   <div className="label">
                     <input type="checkbox" name="checkbox" />

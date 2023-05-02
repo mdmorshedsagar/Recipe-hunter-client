@@ -1,37 +1,94 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../AuthProviders/AuthProviders";
-
+import toast from 'react-hot-toast';
+import { FaGooglePlusG } from "react-icons/fa";
 const Login = () => {
-    const {createLogin} = useContext(authContext);
+    const {createLogin,CreateResetPass,createGoogle} = useContext(authContext);
+    const emailRef = useRef();
+    const [error, setError] = useState('')
+    const [show, setShow] = useState(false);
   const handleLogin = (event) => {
     event.preventDefault();
+    setError('');
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    
     createLogin(email,password)
     .then((result) => {
         
+        // eslint-disable-next-line no-unused-vars
         const user = result.user;
-        console.log(user)
+        toast.success('Registration successfully',
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
       })
       .catch((error) => {
         
+        // eslint-disable-next-line no-unused-vars
         const errorMessage = error.message;
-        console.log(errorMessage)
+        setError("email address and password does not match")
       });
   };
+  const handleGoogle =()=> {
+      createGoogle()
+      .then((result) => {
+        
+        // eslint-disable-next-line no-unused-vars
+        const user = result.user;
+        toast.success('Google signin successfully',
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
+        
+      }).catch((error) => {
+        
+        // eslint-disable-next-line no-unused-vars
+        const errorMessage = error.message;
+       setError(errorMessage)
+        
+      });
+  }
+  const handleResetPassword = () =>{
+      const email = emailRef.current.value;
+      if(!email){
+        alert("First input your email")
+      }
+      CreateResetPass(email)
+      .then(() => {
+        alert('please check your email ')
+      })
+      .catch((error) => {
+       
+        const errorMessage = error.message;
+         setError(errorMessage)
+      });
+  }
   return (
-    <form onSubmit={handleLogin}>
+    <div>
+      <form onSubmit={handleLogin}>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col ">
+
           <div className="text-center ">
             <h1 className="text-5xl w-[300px] md:w-[400px] font-bold">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+              <p className="text-lg font-semibold text-red-700">{error}</p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -39,6 +96,7 @@ const Login = () => {
                 <input
                   type="email"
                   name='email'
+                  ref={emailRef}
                   placeholder="Inter email"
                   className="input input-bordered"
                   required
@@ -48,17 +106,23 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
+                <div className="flex">
                 <input
-                  type="password"
+                  type={show ? "text" : "password"}
                   name='password'
                   placeholder="Inter password"
-                  className="input input-bordered"
+                  className="input input-bordered grow"
                   required
                 />
+                <button className="border border-base-500 rounded-r-lg" onClick={() =>setShow(!show)}>{
+                    show ? <p>Hide</p> : <p>Show</p>
+                  }</button>
+                </div>
+               
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <button onClick={handleResetPassword} className="label-text-alt btn btn-link">
                     Forgot password?
-                  </a>
+                  </button>
                 </label>
 
                 <h1 className="text-xl">
@@ -71,11 +135,21 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn bg-orange-600">Login</button>
               </div>
+              <hr/>
+              <div className="pt-2">
+              <button onClick={handleGoogle} className="btn btn-outline btn-info w-full"><FaGooglePlusG className="text-2xl mr-2 font-bold"></FaGooglePlusG> signin with Google</button>
+              </div>
             </div>
           </div>
         </div>
+        
       </div>
+      
     </form>
+   
+    </div>
+    
+
   );
 };
 
