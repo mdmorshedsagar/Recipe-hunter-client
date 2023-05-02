@@ -12,11 +12,13 @@ import Blog from './Pages/Blog';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import AuthProviders from './AuthProviders/AuthProviders';
-import  { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast'
+import ErrorPage from './Pages/ErrorPage';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App> ,
+    errorElement: <ErrorPage></ErrorPage> ,
     children: [
       {
         path:'/',

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
-import logo from '../assets/yumma_logo.png'
+import logo from '../../public/yumma_logo.png'
 import { Link } from 'react-router-dom';
 import { authContext } from '../AuthProviders/AuthProviders';
 const Navber = () => {

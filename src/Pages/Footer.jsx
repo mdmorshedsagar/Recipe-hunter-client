@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import logo from '../assets/yumma_logo.png'
+import logo from '../../public/yumma_logo.png'
 const Footer = () => {
     return (
         <div className=''>

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import manImage from '../../assets/img_1.png'
+import manImage from '../../../public/img_1.png'
 const JoinUs = () => {
     return (
         <div className="hero min-h-screen md:p-5">
