@@ -1,52 +1,56 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProviders/AuthProviders";
 import { updateProfile } from "firebase/auth";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 const Register = () => {
-  const {createRegister} = useContext(authContext);
-  const [error, setError] = useState('');
+  const { createRegister } = useContext(authContext);
+  const [error, setError] = useState("");
   const [show, setShow] = useState(false);
-  const handleRegister = (event) =>{
+  const navigate = useNavigate();
+  const handleRegister = (event) => {
     event.preventDefault();
-     setError('')
+    setError("");
     const form = event.target;
     const name = form.name.value;
     const img = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-     
-     if(password.length < 6){
-      alert('password must be 8 character')
+
+    if (password.length < 6) {
+      alert("password must be 8 character");
       return;
     }
-   
-   createRegister (email,password)
-   .then(async(result) => {
-    const user = result.user;
-    await updateProfile(user,{
-      displayName: name ,
-      photoURL: img
-    }).then(() => {
-    }).catch(() =>{})
-    toast.success('Registration successfully',
-  {
-    style: {
-      borderRadius: '10px',
-      background: '#333',
-      color: '#fff',
-    },
-  }
-);
-    form.reset();
-  })
-  .catch((error) => {
-    
-    const errorMessage = error.message;
-       setError(errorMessage)
-  });
-  }
+
+    createRegister(email, password)
+      .then(async (result) => {
+        const user = result.user;
+        await updateProfile(user, {
+          displayName: name,
+          photoURL: img,
+        })
+          .then(() => {})
+          .catch(() => {});
+        toast.success(
+          "Registration successfully",
+
+          {
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          }
+        );
+        form.reset();
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
   return (
     <form onSubmit={handleRegister}>
       <div className="hero min-h-screen bg-base-200">
@@ -63,7 +67,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
-                  name='name'
+                  name="name"
                   placeholder="inter your name"
                   className="input input-bordered"
                 />
@@ -74,7 +78,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
-                  name='img'
+                  name="img"
                   placeholder="Inter photo url"
                   className="input input-bordered"
                 />
@@ -85,7 +89,7 @@ const Register = () => {
                 </label>
                 <input
                   type="email"
-                  name='email'
+                  name="email"
                   placeholder="inter your email address"
                   className="input input-bordered"
                   required
@@ -94,22 +98,23 @@ const Register = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
-                 
                 </label>
                 <div className="flex ">
-                <input
-                
-                  type={show ? "text" : "password"}
-                  name='password'
-                  placeholder="inter a password "
-                  className="input input-bordered grow"
-                  required
-                />
-                 <button className="border border-base-500 rounded-r-lg" onClick={() =>setShow(!show)}>{
-                    show ? <p>Hide</p> : <p>Show</p>
-                  }</button>
+                  <input
+                    type={show ? "text" : "password"}
+                    name="password"
+                    placeholder="inter a password "
+                    className="input input-bordered grow"
+                    required
+                  />
+                  <button
+                    className="border border-base-500 rounded-r-lg"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? <p>Hide</p> : <p>Show</p>}
+                  </button>
                 </div>
-               
+
                 <label className="label">
                   <div className="label">
                     <input type="checkbox" name="checkbox" />
