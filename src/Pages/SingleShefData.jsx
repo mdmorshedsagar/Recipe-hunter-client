@@ -6,12 +6,9 @@ const SingleShefData = () => {
     const singleShefData = useLoaderData();
    const [recipe, setRecipe] = useState([]);
    useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('http://localhost:3000/recipe');
-      const json = await response.json();
-      setRecipe(json);
-    }
-      fetchData();
+     fetch('https://chef-recipe-hunter-server-osq5ttqaj-mdmorshedsagar.vercel.app/recipe')
+     .then(res => res.json())
+     .then(data => setRecipe(data))
     
     },[])
    

@@ -9,7 +9,7 @@ import ShefData from "./HomepageSection/shefData";
 const Home = () => {
   const [shef, setShef] = useState([]);
    useEffect(()=>{
-    fetch('http://localhost:3000/shef')
+    fetch('https://chef-recipe-hunter-server-osq5ttqaj-mdmorshedsagar.vercel.app/shef')
     .then(res => res.json())
     .then(data => setShef(data))
    },[])

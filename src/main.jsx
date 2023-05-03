@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path:"/shef/:id",
         element: <SingleShefData></SingleShefData>,
-        loader:({params}) => fetch(`http://localhost:3000/shef/${params.id}`)
+        loader:({params}) => fetch(`https://chef-recipe-hunter-server-osq5ttqaj-mdmorshedsagar.vercel.app/shef/${params.id}`)
       }
     ]
   },
