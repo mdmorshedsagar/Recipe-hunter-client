@@ -14,7 +14,9 @@ import Register from './Pages/Register';
 import AuthProviders from './AuthProviders/AuthProviders';
 import  { Toaster } from 'react-hot-toast'
 import ErrorPage from './Pages/ErrorPage';
-import Recipe from './Pages/Recipe';
+import SingleShefData from './Pages/SingleShefData';
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,13 +41,13 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path:"/recipes/:id",
-        element: <Recipe></Recipe>,
-        loader: ({params}) => fetch(`http://localhost:3000/recipe/${params.id}`)
-
+        path:"/shef/:id",
+        element: <SingleShefData></SingleShefData>,
+        loader:({params}) => fetch(`http://localhost:3000/shef/${params.id}`)
       }
     ]
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

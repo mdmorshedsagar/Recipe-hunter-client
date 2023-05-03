@@ -20,7 +20,9 @@ const ShefData = (data) => {
         <p>Recipes {num_of_recipes} </p>
         <div className="card-actions justify-end">
          
-          <Link to={`/recipes/${id}`}  className="btn btn-outline hover:bg-orange-600 w-full text-xl font-semibold">View Recipes</Link>
+         <Link to={`/shef/${id}`}  className="btn btn-outline hover:bg-orange-600 w-full text-xl font-semibold">View Recipes</Link>
+         
+          
         </div>
       </div>
     </div>
