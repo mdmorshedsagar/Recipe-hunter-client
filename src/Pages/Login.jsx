@@ -3,9 +3,9 @@ import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../AuthProviders/AuthProviders";
 import toast from 'react-hot-toast';
-import { FaGooglePlusG } from "react-icons/fa";
+import { FaGooglePlusG, FaGithub } from "react-icons/fa";
 const Login = () => {
-    const {createLogin,CreateResetPass,createGoogle} = useContext(authContext);
+    const {createLogin,CreateResetPass,createGoogle,createGithub} = useContext(authContext);
     const emailRef = useRef();
     const [error, setError] = useState('')
     const [show, setShow] = useState(false);
@@ -62,6 +62,28 @@ const Login = () => {
         
       });
   }
+  const handleGithub = () =>{
+      createGithub()
+      .then((result) => {
+        
+        // eslint-disable-next-line no-unused-vars
+        const user = result.user;
+        toast.success('Github signin successfully',
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
+        
+      }).catch((error) => {
+       
+        const errorMessage = error.message;
+         setError(errorMessage)
+      });
+  }
   const handleResetPassword = () =>{
       const email = emailRef.current.value;
       if(!email){
@@ -77,6 +99,7 @@ const Login = () => {
          setError(errorMessage)
       });
   }
+
   return (
     <div>
       <form onSubmit={handleLogin}>
@@ -138,6 +161,11 @@ const Login = () => {
               <hr/>
               <div className="pt-2">
               <button onClick={handleGoogle} className="btn btn-outline btn-info w-full"><FaGooglePlusG className="text-2xl mr-2 font-bold"></FaGooglePlusG> signin with Google</button>
+
+              
+              </div>
+              <div>
+              <button onClick={handleGithub} className="btn btn-outline w-full" > <FaGithub className="text-2xl mr-2 font-bold"></FaGithub> signin with Github</button>
               </div>
             </div>
           </div>

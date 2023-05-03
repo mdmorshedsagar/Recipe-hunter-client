@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -19,6 +20,7 @@ const AuthProviders = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const createRegister = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -28,6 +30,9 @@ const AuthProviders = ({ children }) => {
   const createGoogle = () =>{
    return signInWithPopup(auth, googleProvider)
   
+  }
+  const createGithub = () =>{
+    return signInWithPopup(auth, githubProvider)
   }
    const createLogOut = () =>{
     return signOut(auth);
@@ -47,6 +52,7 @@ const AuthProviders = ({ children }) => {
     createRegister,
     createLogin,
     createGoogle,
+    createGithub,
     createLogOut,
     CreateResetPass
   };
