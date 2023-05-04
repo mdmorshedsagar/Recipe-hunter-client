@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import bg_image from "../../../public/top-view-fully-set-rustic-260nw-772641289.webp";
+
 const Header = () => {
     return (
         <div

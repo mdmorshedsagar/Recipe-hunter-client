@@ -9,7 +9,7 @@ const Testimoneal = () => {
     TESTIMONIAL
     </p>
     <h1 className="text-5xl font-bold py-3">What they say</h1>
-    <p className="w-[400px] md:w-[650px] mx-auto text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+    <p className=" md:w-[650px] mx-auto text-xl mb-[35px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
 </div>
 <div className=" grid gap-4 lg:grid-cols-3 ">
 <div className="card  bg-base-100 shadow-xl">

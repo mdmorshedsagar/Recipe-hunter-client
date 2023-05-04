@@ -22,7 +22,7 @@ const Home = () => {
       <div className="mt-[36px]">
         <div className="text-center">
         <h1 className="text-5xl font-bold ">SHEFS</h1>
-        <p className="text-xl">There are six shef details card</p>
+        <p className="text-xl my-2">There are six shef details card</p>
         </div>
       <div className="my-[40px] lg:mx-[40px] grid md:grid-cols-2  lg:grid-cols-3 gap-5">
         {shef.map((data) => (

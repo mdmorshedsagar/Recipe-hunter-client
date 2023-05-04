@@ -18,30 +18,19 @@ const Blog = () => {
   };
   return (
     <div className="my-container " >
-      <div className=" text-center mb-5">
-        <ReactToPdf targetRef={ref} filename="code-example.pdf" options={options} x={.5} y={.5} scale={0.6}>
-          {({ toPdf }) => (
-            <button
-              onClick={toPdf}
-              className="btn bg-orange-600 px-4 py-2 text-xl font -bold"
-            >
-              Download pdf
-            </button>
-          )}
-        </ReactToPdf>
-      </div>
+    
       <div ref={ref}  >
-        <h1 className=" text-center text-orange-600 font-bold lg:text-5xl my-5">
+        <h1 className=" text-center text-orange-600 font-bold text-5xl my-5">
           Question Answer <hr />{" "}
         </h1>
 
         <div className="card w-full bg-base-100 shadow-xl my-5">
           <div className="card-body">
-            <h2 className="card-title lg:text-3xl text-orange-600 font-semibold">
+            <h2 className="card-title text-3xl text-orange-600 font-semibold">
               1. Tell us the differences between uncontrolled and controlled
               components?
             </h2>
-            <p className="lg:text-lg">
+            <p className="text-lg">
               Controlled components are typically used in situations where the
               state of a user interface element needs to be managed and updated
               by a higher-level component. In this approach, the components
@@ -103,6 +92,18 @@ const Blog = () => {
         </div>
    
 </div>
+<div className=" text-center mb-5">
+        <ReactToPdf targetRef={ref} filename="code-example.pdf" options={options} x={.5} y={.5} scale={0.6}>
+          {({ toPdf }) => (
+            <button
+              onClick={toPdf}
+              className="btn bg-orange-600 px-4 py-2 text-xl font -bold"
+            >
+              Download pdf
+            </button>
+          )}
+        </ReactToPdf>
+      </div>
       
     </div>
   );
