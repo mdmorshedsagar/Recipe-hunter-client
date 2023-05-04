@@ -4,20 +4,44 @@ import ReactToPdf from "react-to-pdf";
 
 const Blog = () => {
   const ref = React.createRef();
+  const options = {
+    filename: "questions.pdf",
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    // Use html-to-pdfmake to convert HTML to PDF
+    pdfConverterOptions: {
+      htmlToPdfmake: {
+        defaultStyles: { font: "Roboto" },
+        tableAutoSize: true,
+      },
+    },
+  };
   return (
-    <div className="my-container">
-      <div ref={ref}>
-        <h1 className=" text-center text-orange-600 font-bold text-5xl my-5">
+    <div className="my-container " >
+      <div className=" text-center mb-5">
+        <ReactToPdf targetRef={ref} filename="code-example.pdf" options={options} x={.5} y={.5} scale={0.6}>
+          {({ toPdf }) => (
+            <button
+              onClick={toPdf}
+              className="btn bg-orange-600 px-4 py-2 text-xl font -bold"
+            >
+              Download pdf
+            </button>
+          )}
+        </ReactToPdf>
+      </div>
+      <div ref={ref}  >
+        <h1 className=" text-center text-orange-600 font-bold lg:text-5xl my-5">
           Question Answer <hr />{" "}
         </h1>
 
         <div className="card w-full bg-base-100 shadow-xl my-5">
           <div className="card-body">
-            <h2 className="card-title text-3xl text-orange-600 font-semibold">
+            <h2 className="card-title lg:text-3xl text-orange-600 font-semibold">
               1. Tell us the differences between uncontrolled and controlled
               components?
             </h2>
-            <p className="text-lg">
+            <p className="lg:text-lg">
               Controlled components are typically used in situations where the
               state of a user interface element needs to be managed and updated
               by a higher-level component. In this approach, the components
@@ -66,7 +90,7 @@ const Blog = () => {
         <div className="card w-full bg-base-100 shadow-xl my-5">
           <div className="card-body">
             <h2 className="card-title text-3xl text-orange-600 font-semibold">
-              1. What is a custom hook, and why will you create a custom hook?
+              4. What is a custom hook, and why will you create a custom hook?
             </h2>
             <p className="text-lg">
               Castom hooks create a react project to makes the code cleaner and
@@ -77,20 +101,9 @@ const Blog = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      <div className=" text-center mb-5">
-        <ReactToPdf targetRef={ref} filename="code-example.pdf">
-          {({ toPdf }) => (
-            <button
-              onClick={toPdf}
-              className="btn bg-orange-600 px-4 py-2 text-xl font -bold"
-            >
-              Download pdf
-            </button>
-          )}
-        </ReactToPdf>
-      </div>
+   
+</div>
+      
     </div>
   );
 };
