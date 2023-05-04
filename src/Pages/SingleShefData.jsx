@@ -28,7 +28,7 @@ const SingleShefData = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 bg-gradient-to-r from-zinc-300 to-stone-100 py-4">
+      <div className="grid  lg:grid-cols-2 bg-gradient-to-r from-zinc-200 to-stone-100 py-4 border-b-8  border-stone-200 rounded-xl shadow-lg ">
         <img
           src={photo_url}
           className="max-w-sm rounded-full h-[500px] shadow-2xl lg:order-2  w-full mx-auto "

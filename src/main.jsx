@@ -14,6 +14,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import SingleShefData from "./Pages/SingleShefData";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,9 +40,9 @@ const router = createBrowserRouter([
       {
         path: "/shef/:id",
         element: (
-          <PrivateRoutes>
-            <SingleShefData></SingleShefData>
-          </PrivateRoutes>
+          <PrivateRoutes><SingleShefData></SingleShefData></PrivateRoutes>
+            
+          
         ),
         loader: ({ params }) =>
           fetch(

@@ -16,7 +16,7 @@ const Navber = () => {
   return (
     <div
       className="navbar bg-base-200
-        "
+       my-container2 "
     >
       <div className="navbar-start">
         <div className="dropdown">

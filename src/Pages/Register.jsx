@@ -107,20 +107,15 @@ const Register = () => {
                     className="input input-bordered grow"
                     required
                   />
-                  <button
-                    className="border border-base-500 rounded-r-lg"
+                  <p
+                    className="border border-base-500 rounded-r-lg cursor-pointer text-center pt-2"
                     onClick={() => setShow(!show)}
                   >
                     {show ? <p>Hide</p> : <p>Show</p>}
-                  </button>
+                  </p>
                 </div>
 
-                <label className="label">
-                  <div className="label">
-                    <input type="checkbox" name="checkbox" />
-                    <p>terms and privacy</p>
-                  </div>
-                </label>
+               
 
                 <h1 className="text-xl">
                   If you register please{" "}

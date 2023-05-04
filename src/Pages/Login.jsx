@@ -5,8 +5,7 @@ import { authContext } from "../AuthProviders/AuthProviders";
 import toast from "react-hot-toast";
 import { FaGooglePlusG, FaGithub } from "react-icons/fa";
 const Login = () => {
-  const { createLogin, CreateResetPass, createGoogle, createGithub } =
-    useContext(authContext);
+  const { createLogin, CreateResetPass, createGoogle, createGithub } =useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
   const position = location.state?.from?.pathname || "/";
@@ -131,12 +130,12 @@ const Login = () => {
                       className="input input-bordered grow"
                       required
                     />
-                    <button
-                      className="border border-base-500 rounded-r-lg"
+                    <p
+                      className="border border-base-500 rounded-r-lg cursor-pointer text-center pt-2"
                       onClick={() => setShow(!show)}
                     >
                       {show ? <p>Hide</p> : <p>Show</p>}
-                    </button>
+                    </p>
                   </div>
 
                   <label className="label">
